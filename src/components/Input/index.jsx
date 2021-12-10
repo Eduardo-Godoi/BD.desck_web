@@ -1,12 +1,18 @@
+import { ErrorMessage, Field } from "formik";
 import { Container, InputContainer } from "./styles";
 
-function Input({ label, icon: Icon, ...rest }) {
+function Input({ label, icon: Icon, errorName, ...rest }) {
   return (
     <Container>
-      <div>{label}</div>
+      <div>
+        {label}
+        <span>
+          <ErrorMessage name={errorName} />
+        </span>
+      </div>
       <InputContainer>
-        {Icon && <Icon />}
-        <input {...rest} />
+        {Icon && <Icon size={20} />}
+        <Field {...rest} />
       </InputContainer>
     </Container>
   );

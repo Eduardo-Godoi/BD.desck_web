@@ -1,13 +1,19 @@
+import axios from "axios";
 import { Form, Formik } from "formik";
 import { FiLock, FiMail, FiMapPin, FiUser } from "react-icons/fi";
+import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import schema from "./schema";
 import { AnimationContainer, Background, Container, Content } from "./styles";
 
+const history = useHistory;
+
 function Signup() {
   function onSubmit(values, actions) {
+    delete values["confirmPassword"];
     console.log("SUBMIT", values);
   }
 
@@ -16,18 +22,16 @@ function Signup() {
 
     const zipCode = value?.replace(/[^0-9]/g, "");
 
-    if (zipCode?.length !== 8) {
-      return;
-    }
-
-    fetch(`https://viacep.com.br/ws/${zipCode}/json/`)
-      .then((res) => res.json())
-      .then((data) => {
-        setFieldValue("publicArea", data.logradouro);
-        setFieldValue("district", data.bairro);
-        setFieldValue("city", data.localidade);
-        setFieldValue("state", data.uf);
-      });
+    axios
+      .get(`https://viacep.com.br/ws/${zipCode}/json/`)
+      .then((res) => {
+        toast.success("Endereço Validado com Sucesso");
+        setFieldValue("publicArea", res.data.logradouro);
+        setFieldValue("district", res.data.bairro);
+        setFieldValue("city", res.data.localidade);
+        setFieldValue("state", res.data.uf);
+      })
+      .catch((err) => toast.error("CEP Informado é Inválido"));
   }
 
   return (
@@ -52,7 +56,7 @@ function Signup() {
               state: "",
             }}
           >
-            {({ isValid, setFieldValue, errors }) => (
+            {({ values, isValid, setFieldValue, errors }) => (
               <Form>
                 <h1>Cadastro</h1>
                 <Input

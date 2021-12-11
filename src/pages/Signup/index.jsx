@@ -25,13 +25,19 @@ function Signup() {
     axios
       .get(`https://viacep.com.br/ws/${zipCode}/json/`)
       .then((res) => {
+        if (res.data.erro) {
+          return toast.error("CEP Informado não existe");
+        }
         toast.success("Endereço Validado com Sucesso");
         setFieldValue("publicArea", res.data.logradouro);
         setFieldValue("district", res.data.bairro);
         setFieldValue("city", res.data.localidade);
         setFieldValue("state", res.data.uf);
+        console.log(res);
       })
-      .catch((err) => toast.error("CEP Informado é Inválido"));
+      .catch((_) => {
+        toast.error("CEP Informado é Inválido");
+      });
   }
 
   return (

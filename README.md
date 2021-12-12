@@ -1,10 +1,10 @@
 # DB.Desck 📝
 
-DB.desck é uma interface simples onde o usuário pode realizar um cadstro é login.
+DB.desck é uma interface simples onde o usuário pode realizar cadstro é login.
 
 ## Como utilizar:
 
-- Você pode acessar a interface pelo seguinte link sem a necessidade de clonar/instalar nem uma depenência.
+- Você pode acessar a interface pelo seguinte link sem a necessidade de clonar/instalar nem uma dependência.
 
 ```
 https://bd-desck.vercel.app/

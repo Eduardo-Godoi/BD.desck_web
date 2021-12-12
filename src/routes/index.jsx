@@ -30,7 +30,10 @@ function Routes() {
         />
       </Route>
       <Route path="/dashboard">
-        <Dashboard authenticated={authenticated} />
+        <Dashboard
+          authenticated={authenticated}
+          setAutenticated={setAutenticated}
+        />
       </Route>
     </Switch>
   );

@@ -1,6 +1,6 @@
 # DB.Desck 📝
 
-DB.desck é uma interface simples onde o usuário pode realizar cadstro é login.
+DB.desck é uma interface simples onde o usuário pode realizar cadastro é login.
 
 ## Como utilizar:
 

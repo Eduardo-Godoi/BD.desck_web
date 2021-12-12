@@ -2,7 +2,7 @@ import axios from "axios";
 import { Form, Formik } from "formik";
 import { FiLock, FiMail, FiMapPin, FiUser } from "react-icons/fi";
 import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
@@ -10,7 +10,7 @@ import api from "../../services/api";
 import schema from "./schema";
 import { AnimationContainer, Background, Container, Content } from "./styles";
 
-function Signup() {
+function Signup({ authenticated }) {
   const history = useHistory();
 
   function onSubmit(values, actions) {
@@ -63,6 +63,10 @@ function Signup() {
       .catch((_) => {
         toast.error("CEP Informado é Inválido");
       });
+  }
+
+  if (authenticated) {
+    return <Redirect to="/dashboard" />;
   }
 
   return (

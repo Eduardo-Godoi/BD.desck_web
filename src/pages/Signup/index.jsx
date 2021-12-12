@@ -106,7 +106,7 @@ function Signup({ authenticated }) {
                   name="username"
                   icon={FiUser}
                   label="Nome de usuário:"
-                  placeholder="Insira seu username"
+                  placeholder="Insira seu usuário"
                 />
                 <Input
                   errorName="email"

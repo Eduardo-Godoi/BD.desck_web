@@ -1,0 +1,14 @@
+1. A solução deve ser disponibilizada em Cloud ou On-premise?
+
+R: Como se trata de uma aplicação web e a intenção é que todos os clientes possam se registrar na plataforma,
+ acredito que o cloud seria a melhor escolha para facilitar na experiência do usuário. 
+
+
+2.Considerando a participação de 4 pessoas técnicas para o desenvolvimento dessa
+solução, responda qual ferramenta acreditas ser apropriada para o controle de
+tarefas da equipe, a ferramenta é ágil?
+
+R:acredito que o trello seria uma ótima escolha pois nele podemos criar quadros ou listas e adicionar cards de tasks nessas listas,
+ uma estrutura simples seria 3 quadros ex: to-do: tasks que estão a fazer, in progress: tasks que alguém da equipe está desenvolvendo
+e done: conforme as tasks vão sendo finalizadas basta passar os cards para frente até chegar no done, e assim temos um controle das tasks que estão paradas,
+ tasks que estão em desenvolvimento e tasks finalizadas, tendo uma visão geral do projeto.

@@ -15,7 +15,7 @@ https://bd-desck.vercel.app/
 - clone o reposiório:
 
 ```
-git@gitlab.com:eduardogodoi/bd.desck.git
+https://github.com/Eduardo-Godoi/BD.desck_web
 ```
 
 - Em seguida entre no diretório:

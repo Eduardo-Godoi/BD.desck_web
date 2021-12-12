@@ -2,6 +2,10 @@ import * as Yup from "yup";
 
 export default Yup.object().shape({
   name: Yup.string().required("Campo é Obrigatório"),
+  username: Yup.string()
+    .min(4, "necessário no mínimo 4 caracteres")
+    .matches("^[a-z0-9_-]{3,16}$", "Apenas letras minusculas e '_'")
+    .required("Campo é Obrigatório"),
   email: Yup.string()
     .email("Formato de E-mail inválido")
     .required("Campo é Obrigatório"),

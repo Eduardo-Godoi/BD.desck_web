@@ -6,15 +6,41 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
+import api from "../../services/api";
 import schema from "./schema";
 import { AnimationContainer, Background, Container, Content } from "./styles";
 
-const history = useHistory;
-
 function Signup() {
+  const history = useHistory();
+
   function onSubmit(values, actions) {
-    delete values["confirmPassword"];
-    console.log("SUBMIT", values);
+    const user = {
+      full_name: values.name,
+      username: values.username,
+      email: values.email,
+      password: values.password,
+      zip_code: values.zipCode,
+      public_area: values.publicArea,
+      number: values.number,
+      district: values.district,
+      city: values.city,
+      state: values.state,
+    };
+
+    api
+      .post("/register/", user)
+      .then((res) => {
+        toast.success("Cadastro Confirmado!");
+        return history.push("/login");
+      })
+      .catch((e) => {
+        if (e.response?.data?.email) {
+          toast.error("E-mail já cadastrado");
+        }
+        if (e.response?.data?.username) {
+          toast.error("Nome de usuário já cadastrado");
+        }
+      });
   }
 
   function onBlurZipCode(ev, setFieldValue) {
@@ -33,7 +59,6 @@ function Signup() {
         setFieldValue("district", res.data.bairro);
         setFieldValue("city", res.data.localidade);
         setFieldValue("state", res.data.uf);
-        console.log(res);
       })
       .catch((_) => {
         toast.error("CEP Informado é Inválido");
@@ -62,7 +87,7 @@ function Signup() {
               state: "",
             }}
           >
-            {({ values, isValid, setFieldValue, errors }) => (
+            {({ values, setFieldValue, errors }) => (
               <Form>
                 <h1>Cadastro</h1>
                 <Input
@@ -70,7 +95,14 @@ function Signup() {
                   name="name"
                   icon={FiUser}
                   label="Nome:"
-                  placeholder="Seu nome"
+                  placeholder="Nome Completo"
+                />
+                <Input
+                  errorName="username"
+                  name="username"
+                  icon={FiUser}
+                  label="Nome de usuário:"
+                  placeholder="Insira seu username"
                 />
                 <Input
                   errorName="email"
@@ -146,7 +178,7 @@ function Signup() {
                   type="text"
                 />
 
-                <Button type="submit" disable={!isValid}>
+                <Button type="submit" onClick={onsubmit}>
                   Enviar
                 </Button>
                 <p>

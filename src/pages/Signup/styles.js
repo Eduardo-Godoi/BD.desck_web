@@ -45,7 +45,7 @@ export const AnimationContainer = styled.div`
   animation: ${appearFromRigth} 1s;
 
   form {
-    margin: 60px 0px;
+    margin: 23px 0px;
     width: 340px;
     text-align: center;
   }
